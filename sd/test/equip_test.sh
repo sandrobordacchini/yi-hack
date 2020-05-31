@@ -358,9 +358,9 @@ sync
 
 
 ### Launch record event
-cd /home
-./record_event &
-./mp4record 60 &
+#cd /home
+#./record_event &
+#./mp4record 60 &
 
 
 ### Some configuration
