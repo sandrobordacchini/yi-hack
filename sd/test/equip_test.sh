@@ -49,12 +49,12 @@ LOG_FILE=${LOG_DIR}/log.txt
 
 log_init() {
     # clean the previous log file and add a starting line
-    echo "Starting to log..." > /home/hd1/test/log.txt
+    echo "$(/bin/date -Iseconds) Starting to log..." > /home/hd1/test/log.txt
 }
 
 log() {
     # do_logging
-    echo "$@" >> /home/hd1/test/log.txt
+    echo "$(/bin/date -Iseconds) $@" >> /home/hd1/test/log.txt
     sync
 }
 
