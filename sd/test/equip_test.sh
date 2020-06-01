@@ -360,13 +360,15 @@ ps | grep server | grep -v grep | grep -v log_server >> ${LOG_FILE}
 
 sync
 
-
-
-### Launch record event
-#cd /home
-#./record_event &
-#./mp4record 60 &
-
+if [[ $(get_config DETECTNRECORD) == "yes" ]] ; then
+    log "Launch record event handler"
+    cd /home
+    ./record_event &
+    ./mp4record 60 &
+    log "Done"
+else
+    log "Motion detection and recording are disabled"
+fi
 
 ### Some configuration
 
