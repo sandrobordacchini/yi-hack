@@ -303,8 +303,8 @@ log "New datetime is $(date)"
 
 
 ### Check if reach gateway and notify
-log "Check connectivity to $(get_config GATEWAY)"
-ping -c3 -W2 $(get_config GATEWAY) >> ${LOG_FILE}
+log "Check connectivity to $(route -n | grep UG | awk '{print $2}')"
+ping -c3 -W2 $(route -n | grep UG | awk '{print $2}') >> ${LOG_FILE}
 if [ 0 -eq $? ]; then
     log "Connectivity is OK"
     /home/rmm "/home/hd1/voice/wifi_connected.g726" 1
@@ -409,8 +409,8 @@ fi
 
 ### Check if reach gateway and notify
 
-log "Check connectivity to $(get_config GATEWAY)"
-ping -c3 -W2 $(get_config GATEWAY) >> ${LOG_FILE}
+log "Check connectivity to $(route -n | grep UG | awk '{print $2}')"
+ping -c3 -W2 $(route -n | grep UG | awk '{print $2}') >> ${LOG_FILE}
 if [ 0 -eq $? ]; then
     log "Connectivity is OK"
     led $(get_config LED_WHEN_READY)
