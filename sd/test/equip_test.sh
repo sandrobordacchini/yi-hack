@@ -303,9 +303,13 @@ log "New datetime is $(date)"
 
 
 ### Check if reach gateway and notify
-ping -c1 -W2 $(get_config GATEWAY) > /dev/null
+log "Check connectivity to $(get_config GATEWAY)"
+ping -c3 -W2 $(get_config GATEWAY) >> ${LOG_FILE}
 if [ 0 -eq $? ]; then
+    log "Connectivity is OK"
     /home/rmm "/home/hd1/voice/wifi_connected.g726" 1
+else    
+    log "ERROR: connectivity is KO"
 fi
 
 ### set the root password
@@ -404,11 +408,15 @@ fi
 ### Final led color
 
 ### Check if reach gateway and notify
-ping -c1 -W2 $(get_config GATEWAY) > /dev/null
+
+log "Check connectivity to $(get_config GATEWAY)"
+ping -c3 -W2 $(get_config GATEWAY) >> ${LOG_FILE}
 if [ 0 -eq $? ]; then
+    log "Connectivity is OK"
     led $(get_config LED_WHEN_READY)
     /home/rmm "/home/hd1/voice/success.g726" 1
 else
+    log "ERROR: connectivity is KO"
     led -boff -yfast
 fi
 
