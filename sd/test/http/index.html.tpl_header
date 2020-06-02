@@ -23,7 +23,7 @@
   </ul>
   <h2>Boot log</h2>
   <ul>
-    <li><a href="/boot.log">Click here to access the boot log.</a></li>
+    <li><a href="/boot.txt">Click here to access the boot log.</a></li>
   </ul>
   <h2>Software and hardware informations</h2>
   <pre>
