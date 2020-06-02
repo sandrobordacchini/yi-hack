@@ -444,9 +444,8 @@ log "Storage status :"
 df -h >> ${LOG_FILE}
 
 ### to make sure log are written...
-
 sync
 
-
-
+cp -pf ${LOG_FILE} /home/hd1/test/http/boot.log
+sync
 
