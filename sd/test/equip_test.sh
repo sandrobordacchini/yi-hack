@@ -276,7 +276,7 @@ log "Wifi configuration answer: $res"
 
 if [[ $(get_config DHCP) == "yes" ]] ; then
     log "Do network configuration (DHCP)"
-    udhcpc --background --interface=ra0 >> ${LOG_FILE}
+    udhcpc --hostname=$(/bin/hostname) --background --interface=ra0 >> ${LOG_FILE}
     log "Done"
 else
     log "Do network configuration 1/2 (IP and Gateway)"
