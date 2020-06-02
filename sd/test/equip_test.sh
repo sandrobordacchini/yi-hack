@@ -209,7 +209,10 @@ echo "Software version informations : " >> ${TMP_VERSION_FILE}
 cat /home/version | sed "s/^/    /" >> ${TMP_VERSION_FILE}
 
 FIRMWARE_LETTER=$(cat /home/version | grep "version=" | head -1 | cut -d"=" -f2 | sed "s/^[0-9]\.[0-9]\.[0-9]\.[0-9]\([A-Z]\).*/\1/")
+QRCODE_ID=$(/bin/sed -r "s/^.*uid=([A-Z0-9]{10}).*$/\1/g" /etc/productionwrite.inf)
+
 echo "Firmware letter is : '${FIRMWARE_LETTER}'" >> ${TMP_VERSION_FILE}
+echo "Camera QRCODE ID is: '${QRCODE_ID}'" >> ${TMP_VERSION_FILE}
 
 cat ${TMP_VERSION_FILE} >> ${LOG_FILE}
 
@@ -250,7 +253,7 @@ esac
 log "The RTSP server binary version which will be used is the '${RTSP_VERSION}'"
 log "The HTTP server binary version which will be used is the '${HTTP_VERSION}'"
 
-
+/bin/hostname YI-${QRCODE_ID} && log "Hostname set to YI-${QRCODE_ID}" || echo "Unable to set hostname to YI-${QRCODE_ID}"
 
 log "Check for some files size..."
 ls -l /home/hd1/test/rtspsvr* /home/hd1/test/http/server* | sed "s/^/    /" >> ${LOG_FILE}
